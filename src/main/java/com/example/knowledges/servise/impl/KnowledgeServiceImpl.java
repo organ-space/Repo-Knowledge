@@ -39,10 +39,10 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     private FileServiceImpl fileService;
 
     @Override
-    public PageInfo<Knowledge> queryKnowledgeBySort(int pageNum, int pageSize,Integer sort) {
+    public PageInfo<KnowledgeBean> queryKnowledgeBySort(int pageNum, int pageSize,List<Integer> sortList) {
         PageHelper.startPage(pageNum,pageSize);
-        List<Knowledge> knowledges =knowledgeMapper.queryKnowledgeBySort(sort);
-        PageInfo<Knowledge> knowledgeAll=new PageInfo<>(knowledges);
+        List<KnowledgeBean> knowledges =knowledgeMapper.queryKnowledgeBySort(sortList);
+        PageInfo<KnowledgeBean> knowledgeAll=new PageInfo<>(knowledges);
         return knowledgeAll;
     }
 

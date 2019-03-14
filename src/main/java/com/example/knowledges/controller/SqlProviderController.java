@@ -14,11 +14,18 @@ public class SqlProviderController {
     /**
      * 查询条件筛选语句.
      */
-    public String queryKnowledgeBySort(Integer sort){
-        StringBuffer sql = new StringBuffer("select k.id,k.ask,k.answer,k.product_name,k.shop_num,o.name ,s.sort from t_knowledge "+
+    public String queryKnowledgeBySort(Map map){
+        List<Integer> Ids = (List<Integer>) map.get("list");
+        StringBuffer sql = new StringBuffer("select k.id,k.product_factory,k.ask,k.answer,k.product_name,k.shop_num,o.name ,s.sort from t_knowledge "+
                 "k INNER JOIN t_org o on k.data_org=o.data_org join t_knowledge_sort s on k.sort=s.id where 1=1 ");
-        if(sort!= null ){
-            sql.append(" and k.sort=#{sort}");
+        if(Ids !=null || Ids.size()>0){
+            sql.append("and k.sort in(");
+            for (int i = 0; i < Ids.size(); i++) {
+                sql.append("'").append(Ids.get(i)).append("'");
+                if (i < Ids.size() - 1)
+                    sql.append(",");
+            }
+            sql.append(")");
         }
         return sql.toString();
     }

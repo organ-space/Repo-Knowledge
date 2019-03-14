@@ -31,8 +31,8 @@ public class KnowledgeControlle {
 
     /**测试问题分类加分页查询*/
     @GetMapping("queryKnowledgeBySort")
-    public PageInfo<Knowledge> queryKnowledgeBySort(int pageNum, int pageSize,Integer sortId){
-        return knowledgeService.queryKnowledgeBySort(pageNum,pageSize,sortId);
+    public PageInfo<KnowledgeBean> queryKnowledgeBySort(int pageNum, int pageSize,@RequestParam("sortList") List<Integer> sortList){
+        return knowledgeService.queryKnowledgeBySort(pageNum,pageSize,sortList);
     }
 
     /**多条件查询（问题模糊查询、关键词模糊查询、商品名称模糊查询、

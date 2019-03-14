@@ -18,7 +18,7 @@ public interface KnowledgeMapper {
 
     /** 测试一下，使用注解做条件筛选*/
     @SelectProvider(type = SqlProviderController.class,method = "queryKnowledgeBySort")
-    List<Knowledge> queryKnowledgeBySort(Integer sortId);
+    List<KnowledgeBean> queryKnowledgeBySort(List<Integer> sortList);
 
     /** 条件筛选知识库*/
     List<KnowledgeBean> queryKnowledgeAll(KnowledgeBean knowledgeBean);
